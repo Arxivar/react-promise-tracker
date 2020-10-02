@@ -7,9 +7,6 @@
 # Dependencies & Build
 node_modules/
 build/
-lib/
-dist/
-es/
 
 # Aux files
 *.cer

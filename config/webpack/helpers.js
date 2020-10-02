@@ -18,8 +18,7 @@ const resolveFromRootPath = (...args) => path.join(rootPath, ...args);
 
 // Export constants
 exports.srcPath = resolveFromRootPath("src");
-exports.buildPath = resolveFromRootPath("build",);
-exports.distPath = resolveFromRootPath("build", "dist");
+exports.distPath = resolveFromRootPath("dist");
 exports.version = version;
 exports.packageNameCamelCase = packageNameCamelCase;
 exports.getBundleFileName = getBundleFileName;

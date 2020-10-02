@@ -2,6 +2,7 @@
   "name": "react-promise-tracker",
   "version": "2.1.0",
   "description": "Simple React Promise tracker Hook/HOC helper to add loading spinner indicators",
+  "private": true,
   "keywords": [
     "react",
     "promise",
@@ -12,6 +13,16 @@
     "higher order component",
     "spinner",
     "component"
+  ],
+  "files": [
+    "builddist",
+    "dist",
+    "es",
+    "lib",
+    "index.d.ts",
+    "LICENSE.txt",
+    "package.json",
+    "readme.md"
   ],
   "homepage": "https://github.com/Lemoncode/react-promise-tracker#readme",
   "bugs": {
@@ -25,15 +36,6 @@
     "Daniel Sanchez <daniel.sanchez@lemoncode.net> (https://github.com/nasdan)",
     "Alejandro Rosa <> (https://github.com/arp82)"
   ],
-  "files": [
-    "dist",
-    "es",
-    "lib",
-    "index.d.ts",
-    "LICENSE.txt",
-    "package.json",
-    "readme.md"
-  ],
   "browser": "lib/index.js",
   "main": "lib/index.js",
   "types": "index.d.ts",
@@ -41,21 +43,18 @@
   "jsnext:main": "es/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lemoncode/react-promise-tracker.git"
+    "url": "git+https://github.com/Arxivar/react-promise-tracker.git"
   },
   "scripts": {
-    "clean": "rimraf build/*",
-    "build": "npm run clean && npm run build:lib && npm run build:es && npm run build:dist:prod && npm run build:copy",
-    "build:lib": "cross-env BABEL_ENV=es5_cjs babel src --out-dir build/lib --ignore 'src/**/*.spec.js,src/**/*.test.js'",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir build/es --ignore 'src/**/*.spec.js,src/**/*.test.js'",
+    "clean": "rimraf dist/* && rimraf es/* && rimraf lib/*",
+    "build": "npm run clean && npm run build:lib && npm run build:es && npm run build:dist:prod",
+    "build:lib": "cross-env BABEL_ENV=es5_cjs babel src --out-dir lib --ignore 'src/**/*.spec.js,src/**/*.test.js'",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es --ignore 'src/**/*.spec.js,src/**/*.test.js'",
     "build:dist:prod": "cross-env BABEL_ENV=umd webpack -p --config ./config/webpack/webpack.prod.js",
     "build:dist:dev": "cross-env BABEL_ENV=umd webpack --config ./config/webpack/webpack.dev.js",
-    "build:copy": "copyfiles package.json readme.md LICENSE.txt build && copyfiles \"./src/**/*.d.ts\" -u 1 build",
+    "build:copy": "copyfiles ./build/dist dist",
     "test": "cross-env NODE_ENV=test jest",
-    "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "release:prepare": "npm run clean && npm run test && npm run build && rimraf build/dist/report",
-    "release": "npm run release:prepare && npm publish ./build",
-    "release-beta": "npm run release:prepare && npm publish ./build --tag beta"
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
